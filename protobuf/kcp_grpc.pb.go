@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: proto/kcp.proto
 
-package proto
+package protobuf
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KCP_Start_FullMethodName = "/proto.KCP/Start"
+	KCP_Start_FullMethodName = "/protobuf.KCP/Start"
 )
 
 // KCPClient is the client API for KCP service.
@@ -94,7 +94,7 @@ func _KCP_Start_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var KCP_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.KCP",
+	ServiceName: "protobuf.KCP",
 	HandlerType: (*KCPServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
