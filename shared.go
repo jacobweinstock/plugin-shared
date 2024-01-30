@@ -4,7 +4,7 @@ import (
 	context "context"
 
 	"github.com/hashicorp/go-plugin"
-	"github.com/jacobweinstock/plugin-shared/proto"
+	"github.com/jacobweinstock/plugin-shared/protobuf"
 	grpc "google.golang.org/grpc"
 )
 
@@ -32,7 +32,7 @@ type KCP interface {
 }
 
 // GRPCClient is an implementation of KV that talks over RPC.
-type GRPCClient struct{ client proto.KCPClient }
+type GRPCClient struct{ client protobuf.KCPClient }
 
 // Here is the gRPC server that GRPCClient talks to.
 type GRPCServer struct {
@@ -41,19 +41,19 @@ type GRPCServer struct {
 }
 
 func (p *KCPGRPCPlugin) GRPCServer(broker *plugin.GRPCBroker, s *grpc.Server) error {
-	proto.RegisterKCPServer(s, &GRPCServer{Impl: p.Impl})
+	protobuf.RegisterKCPServer(s, &GRPCServer{Impl: p.Impl})
 	return nil
 }
 
 func (p *KCPGRPCPlugin) GRPCClient(ctx context.Context, broker *plugin.GRPCBroker, c *grpc.ClientConn) (interface{}, error) {
-	return &GRPCClient{client: proto.NewKCPClient(c)}, nil
+	return &GRPCClient{client: protobuf.NewKCPClient(c)}, nil
 }
 
-func (g *GRPCServer) Start(ctx context.Context, req *proto.Empty) (*proto.Empty, error) {
-	return &proto.Empty{}, g.Impl.Start()
+func (g *GRPCServer) Start(ctx context.Context, req *protobuf.Empty) (*protobuf.Empty, error) {
+	return &protobuf.Empty{}, g.Impl.Start()
 }
 
-func (g *GRPCClient) Start(ctx context.Context, req *proto.Empty) (*proto.Empty, error) {
+func (g *GRPCClient) Start(ctx context.Context, req *protobuf.Empty) (*protobuf.Empty, error) {
 	var err error
 	req, e := g.client.Start(ctx, req)
 	if e != nil {
