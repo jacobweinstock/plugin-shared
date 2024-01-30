@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: kcp.proto
+// source: proto/kcp.proto
 
-package shared
+package proto
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KCP_Start_FullMethodName = "/main.KCP/Start"
+	KCP_Start_FullMethodName = "/proto.KCP/Start"
 )
 
 // KCPClient is the client API for KCP service.
@@ -94,7 +94,7 @@ func _KCP_Start_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var KCP_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "main.KCP",
+	ServiceName: "proto.KCP",
 	HandlerType: (*KCPServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -103,5 +103,5 @@ var KCP_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "kcp.proto",
+	Metadata: "proto/kcp.proto",
 }

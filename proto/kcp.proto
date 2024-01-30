@@ -1,6 +1,6 @@
 syntax = "proto3";
-package main;
-option go_package = ".";
+package proto;
+option go_package = "./proto";
 
 message Empty {}
 
